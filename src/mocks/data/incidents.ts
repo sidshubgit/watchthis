@@ -1,0 +1,60 @@
+import { Incident } from "@/types/domain";
+
+export const initialIncidents: Incident[] = [
+  {
+    id: "inc-amsolit-500",
+    title: "HTTP 500 Internal Server Error on amsolit.com & ezhrmz.online",
+    description: "Reverse proxy returns HTTP 500 Internal Server Error. Upstream PHP / Node.js application process or database connection error detected on serverforcloud.",
+    severity: "critical",
+    status: "open",
+    serverId: "srv-neevcloud-01",
+    websiteId: "site-amsolit",
+    startedAt: new Date(Date.now() - 48 * 60 * 1000).toISOString(),
+    detectedAt: new Date(Date.now() - 46 * 60 * 1000).toISOString(),
+    resolvedAt: null,
+    durationSeconds: null,
+    resolutionNotes: null,
+    events: [
+      {
+        id: "ev-inc-amsolit-1",
+        incidentId: "inc-amsolit-500",
+        title: "Automated probe detected HTTP 500",
+        description: "Health probe returned HTTP 500 Internal Server Error with Cloudflare error header.",
+        occurredAt: new Date(Date.now() - 46 * 60 * 1000).toISOString(),
+        status: "open",
+      },
+      {
+        id: "ev-inc-amsolit-2",
+        incidentId: "inc-amsolit-500",
+        title: "Subdomains amsol.ezhrmz.online & assol.in also impacted",
+        description: "Shared web server pool failure identified across multiple hosted virtual hosts.",
+        occurredAt: new Date(Date.now() - 35 * 60 * 1000).toISOString(),
+        status: "investigating",
+      },
+    ],
+  },
+  {
+    id: "inc-neevcloud-unpause",
+    title: "NeevCloud Host Unpause & Network Reconnect",
+    description: "Server instance serverforcloud was unpaused and re-established public routing on IPv4 156.238.99.48.",
+    severity: "medium",
+    status: "resolved",
+    serverId: "srv-neevcloud-01",
+    websiteId: null,
+    startedAt: new Date(Date.now() - 13 * 86400 * 1000).toISOString(),
+    detectedAt: new Date(Date.now() - 13 * 86400 * 1000 + 60 * 1000).toISOString(),
+    resolvedAt: new Date(Date.now() - 13 * 86400 * 1000 + 300 * 1000).toISOString(),
+    durationSeconds: 240,
+    resolutionNotes: "NeevCloud StellarSurge instance operational. Systemd default target reached.",
+    events: [
+      {
+        id: "ev-inc-neev-1",
+        incidentId: "inc-neevcloud-unpause",
+        title: "Instance state transition: unpause",
+        description: "Instance resumed in Central India region.",
+        occurredAt: new Date(Date.now() - 13 * 86400 * 1000).toISOString(),
+        status: "resolved",
+      },
+    ],
+  },
+];
